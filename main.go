@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -27,7 +28,20 @@ func main() {
 	}
 	defer m2.Close()
 
-	n, err := m2.WriteString(string(data))
-	fmt.Printf("wrote %d bytes\n", n)
+	m2.WriteString(string(data))
+
+	//Method three
+	m3, err := os.Create("m3.tx")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	w := bufio.NewWriter(m3)    //opens the file for writing
+	w.WriteString(string(data)) //writes the data
+	err = w.Flush()
+	if err != nil {
+		return
+	}
 
 }

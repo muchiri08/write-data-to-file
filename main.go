@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 )
 
@@ -41,6 +42,14 @@ func main() {
 	w.WriteString(string(data)) //writes the data
 	err = w.Flush()
 	if err != nil {
+		return
+	}
+
+	//Method four
+	m4 := "m4.txt"
+	err = ioutil.WriteFile(m4, data, 0644)
+	if err != nil {
+		fmt.Println(err)
 		return
 	}
 

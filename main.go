@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 )
@@ -52,5 +53,13 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+	//Method five
+	m5, err := os.Create("m5.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	io.WriteString(m5, string(data))
 
 }
